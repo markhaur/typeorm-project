@@ -1,9 +1,12 @@
-import { getRepository } from "typeorm"
-import { Tweet } from "./entity/Tweet";
-import { User } from "./entity/User"
+// import { getRepository } from "typeorm"
+// import { Tweet } from "./entity/Tweet";
+// import { User } from "./entity/User";
 
-export const Bootstrap = async () => {
-    const userRepo = getRepository(User);
+var User = require('./entity/User');
+var Tweet = require('./entity/Tweet');
+
+const Bootstrap = async (connection) => {
+    const userRepo = connection.getRepository(User);
     const user = userRepo.create({
         firstName: "Alex",
         lastName: "Brooks",
@@ -16,7 +19,12 @@ export const Bootstrap = async () => {
 
     console.log("New User saved", user);
 
-    const tweetRepo = getRepository(Tweet);
+    const tweetRepo = connection.getRepository(Tweet);
+    // const tweet = {
+    //     title: "",
+    //     content: "",
+    //     user: Promise.resolve(user)
+    // }
     const tweet = new Tweet();
     tweet.title = "I finally got a new job";
     tweet.content = "Well after a long time I landed my dream job on netflix";
@@ -25,8 +33,8 @@ export const Bootstrap = async () => {
     await tweetRepo.save(tweet).catch(err => console.log(err));
 }
 
-export const find = async () => {
-    const userRepo = getRepository(User);
+const find = async (connection) => {
+    const userRepo = connection.getRepository(User);
 
     const user = await userRepo.findOne({ where: { firstName: 'Alex' } }).catch(err => console.log(err));
 
@@ -38,3 +46,6 @@ export const find = async () => {
     
     return user;
 }
+
+module.exports.Bootstrap = Bootstrap;
+module.exports.find = find;
