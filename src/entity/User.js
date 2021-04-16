@@ -20,6 +20,7 @@ module.exports = {
         },
         f: {
             type: 'enum',
+            nullable: true,
             enum: [
                 'f',
                 'd',
