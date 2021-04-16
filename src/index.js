@@ -1,5 +1,4 @@
 const typeorm = require('typeorm');
-const bootstrap = require('./bootstrap');
 var EntitySchema = typeorm.EntitySchema;
 
 typeorm.createConnection({
@@ -18,7 +17,8 @@ typeorm.createConnection({
     var user = {
         firstName: 'munsif',
         lastName: 'ali',
-        age: 25
+        age: 25,
+        f: 's'
     }
 
     var tweet = {

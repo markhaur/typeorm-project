@@ -17,6 +17,14 @@ module.exports = {
         },
         age: {
             type: 'int'
+        },
+        f: {
+            type: 'enum',
+            enum: [
+                'f',
+                'd',
+                's'
+            ]
         }
     },
     relations: {
