@@ -1,7 +1,7 @@
 const typeorm = require('typeorm');
 var EntitySchema = typeorm.EntitySchema;
 
-//
+
 typeorm.createConnection({
     type: "mysql",
     host: "localhost",
