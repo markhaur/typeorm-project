@@ -21,30 +21,27 @@ typeorm.createConnection({
         f: 's'
     }
 
-    var tweet = {
-        title: 'This is munsifali tweet',
-        content: 'This tweet is done during typeorm js example',
-        user: user
-    }
-
     var userRepo = connection.getRepository("User");
     userRepo.save(user)
         .then(savedUser => {
             console.log("post have been saved: ", savedUser);
-            user = savedUser;
+            var tweet = {
+                title: 'This is munsifali tweet',
+                content: 'This tweet is done during typeorm js example',
+                user: savedUser
+            }
+            var tweetRepo = connection.getRepository("Tweet");
+            tweetRepo.save(tweet)
+                .then(savedTweet => {
+                    console.log('tweet have been saved: ', savedTweet);
+                })
+                .catch(err => {
+                    console.log('received error while saving tweet: ', err);
+                })
         })
         .catch(err => {
             console.log('received error while saving user: ', err);
         });
-
-    var tweetRepo = connection.getRepository("Tweet");
-    tweetRepo.save(tweet)
-        .then(savedTweet => {
-            console.log('tweet have been saved: ', savedTweet);
-        })
-        .catch(err => {
-            console.log('received error while saving tweet: ', err);
-        })
 }).catch(err => {
     console.log('error while creating connection: ', err);
 })

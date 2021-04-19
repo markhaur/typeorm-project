@@ -9,7 +9,8 @@ module.exports = {
         },
         firstName: {
             type: 'varchar',
-            length: 20
+            length: 20,
+            unique: true
         },
         lastName: {
             type: 'varchar',
