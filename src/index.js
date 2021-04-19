@@ -31,6 +31,7 @@ typeorm.createConnection({
     userRepo.save(user)
         .then(savedUser => {
             console.log("post have been saved: ", savedUser);
+            user = savedUser;
         })
         .catch(err => {
             console.log('received error while saving user: ', err);

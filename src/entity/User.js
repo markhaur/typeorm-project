@@ -18,6 +18,11 @@ module.exports = {
         age: {
             type: 'int'
         },
+        created_on: {
+            type: 'timestamp',
+            nullable: false,
+            default: () => 'CURRENT_TIMESTAMP'
+        },
         f: {
             type: 'enum',
             nullable: true,
